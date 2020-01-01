@@ -41,12 +41,12 @@ public class AuctionController {
     }
 
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/car")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/max_bid/car")
     public ResponseEntity<BigDecimal> getMaxBidAmount(
             @RequestParam(required = false) String carId)
             throws AuctionApplicationException {
-
-        return new ResponseEntity( auctionService.getMaxBidAmount( carId ), HttpStatus.OK );
+        BigDecimal amount = auctionService.getMaxBidAmount(carId);
+        return new ResponseEntity(amount, HttpStatus.OK );
     }
 
 

@@ -41,9 +41,9 @@ public class AuctionServiceTest {
     public void shouldReturnMaxBiddingAmountWhenCarDetailsIsGiven(){
         String cardId = "123";
         when(auctionRepository.fetchMaxAuctionAmount(
-                Integer.valueOf(cardId))).thenReturn(BigDecimal.valueOf(1234566.00));
+                Integer.valueOf(cardId))).thenReturn(BigDecimal.valueOf(123));
         BigDecimal amount = auctionService.getMaxBidAmount(cardId);
-        Assert.assertEquals(BigDecimal.valueOf(1234566.00),amount);
+        Assert.assertEquals(BigDecimal.valueOf(123).setScale(2),amount.setScale(2));
 
 
     }

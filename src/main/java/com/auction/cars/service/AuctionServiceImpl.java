@@ -39,12 +39,12 @@ public class AuctionServiceImpl implements AuctionService {
     @Override
     public void createAuctionEntry(AuctionDetails auctionDetails) throws AuctionApplicationException {
         try {
-            CustomerDetails customerDetails = userRepository.findCustomer(Integer.valueOf(
-                    auctionDetails.getUserId()));
-            CarDetails carDetails = carRepository.findCarDetails(Integer.valueOf(auctionDetails.getCarId()));
+            CustomerDetails customerDetails = userRepository.findCustomer( Integer.valueOf(
+                    auctionDetails.getUserId() ) );
+            CarDetails carDetails = carRepository.findCarDetails( Integer.valueOf( auctionDetails.getCarId() ) );
             CarBiddingDetails carBiddingDetails = new CarBiddingDetails();
-            carBiddingDetails.setBiddingAmount( auctionDetails.getBiddingAmount() );
-            carBiddingDetails.setCarDetails(carDetails);
+            carBiddingDetails.setBiddingAmount(auctionDetails.getBiddingAmount());
+            carBiddingDetails.setCarDetails( carDetails );
             carBiddingDetails.setCustomerDetails( customerDetails );
             carBiddingDetails.setLastUpdatedTs( new Date() );
             //check if the incoming bidding amount is greater than existing max bidding amount for that car
@@ -75,8 +75,8 @@ public class AuctionServiceImpl implements AuctionService {
     @Override
     public BigDecimal getMaxBidAmount(String carId) {
         BigDecimal maxAuctionAmount = auctionRepository.fetchMaxAuctionAmount(Integer.valueOf(carId));
-        log.info( "The max auction amount for carId:{} is maxAuctionAmount:{}",carId,maxAuctionAmount );
-        return maxAuctionAmount;
+        log.info( "The max auction amount for carId:{} is maxAuctionAmount:{}",carId,maxAuctionAmount);
+        return maxAuctionAmount.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
 
     @Override
