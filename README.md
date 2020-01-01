@@ -41,7 +41,7 @@ These instructions will get you a copy of the project up and running on your loc
 3. ```
     CREATE TABLE car_bidding_platform.car_bidding_details (
 	car_bidding_id INT NOT NULL,
-	bidding_amount DECIMAL(10,0),
+	bidding_amount DECIMAL(19,4),
 	last_updated_time TIMESTAMP,
 	bidder_id INT NOT NULL,
 	auction_car_id INT NOT NULL,
@@ -69,7 +69,7 @@ These instructions will get you a copy of the project up and running on your loc
      
 #### 2. Business Requirement: Get the current winning bid for a car
 
-     GET Request: http://localhost:8080/api/v1/auction/car?cardId=1
+     GET Request: http://localhost:8080/api/v1/auction/max_bid/car?cardId=1
      Result: 4001.00
      
 #### 3. Business Requirement: Get a car's bidding history
